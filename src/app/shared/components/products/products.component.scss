@@ -1,0 +1,23 @@
+.products {
+    padding: 0 1rem;
+    &__container {
+        margin: 0 auto;
+        max-width: 1200px;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 1rem;
+        
+        @media screen and (min-width: 480px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @media screen and (min-width: 768px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        @media screen and (min-width: 1024px) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+}
+:host ::ng-deep app-product-card .product-card {
+    margin: auto;
+}
