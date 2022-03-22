@@ -1,0 +1,41 @@
+.product-card {
+    cursor: pointer;
+    max-width: 360px;
+    &__body {
+        padding: .5rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__price {
+        font-weight: 700;
+        font-size: .9rem;
+        margin-bottom: .4rem;
+        color:rgb(29, 29, 29)
+    }
+    &__title {
+        font-size: .9rem;
+        color: rgb(75, 75, 75);
+        font-weight: 400;
+    }
+    &__icon {
+        background-color: crimson;
+        color: #fff;
+        width: 30px;
+        height: 30px;
+        line-height: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        font-size: .9rem;
+    }
+}
+:host ::ng-deep .product-card__image img {
+    width: 360px;
+    max-width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 1rem;
+    display: block;
+}
