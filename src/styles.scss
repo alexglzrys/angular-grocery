@@ -12,3 +12,15 @@ body {
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+
+// Estilos especiales para la imagen de una tarjeta referente a un producto
+.product-card {
+    &__image img {
+        width: 360px;
+        height: 250px !important;
+        object-fit: cover;
+        border-radius: 1rem;
+        display: block;
+    }
+}

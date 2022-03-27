@@ -4,6 +4,7 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { ProductImageComponent } from './components/product-image/product-image.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProductsComponent } from './components/products/products.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 
@@ -11,14 +12,16 @@ import { ProductsComponent } from './components/products/products.component';
   declarations: [
     ProductCardComponent,
     ProductImageComponent,
-    ProductsComponent
+    ProductsComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
     FontAwesomeModule
   ],
   exports: [
-    ProductsComponent
+    ProductsComponent,
+    NavbarComponent
   ]
 })
 export class SharedModule { }

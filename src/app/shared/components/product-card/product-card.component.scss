@@ -31,11 +31,15 @@
         font-size: .9rem;
     }
 }
-:host ::ng-deep .product-card__image img {
+
+// ! Un componente no puede afectar los estilos CSS de un componente hijo de forma directa
+// ng-deep es una técnica deprecada en Angular, pero permite afectar los estilos CSS de un componente hijo de forma directa
+// ? Se recomienda hacer uso de la hoja de estilos globales para este tipo de tareas, ya que la forma de declaración es más entendible
+
+/*:host ::ng-deep .product-card__image img {
     width: 360px;
-    max-width: 100%;
     height: 250px;
     object-fit: cover;
     border-radius: 1rem;
     display: block;
-}
+}*/
