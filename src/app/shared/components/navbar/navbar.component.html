@@ -1,9 +1,21 @@
 <header class="navbar">
     <div class="navbar__container">
         <div class="navbar__mobile">
-            <div class="navbar__shopping-cart">
+            <div class="navbar__shopping-cart" (click)="toggleSidebar()">
                 <fa-icon [icon]="faBars"></fa-icon>
             </div>
+            <!-- Colocar dinámicamente la clase active si el valor de propiedad asociada es true -->
+            <div class="sidemenu" [class.active]="activeSidebar">
+                <div class="navbar__shopping-cart" (click)="toggleSidebar()">
+                    <fa-icon [icon]="faTimesCircle"></fa-icon>
+                </div>
+                <ul class="sidemenu__menu">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Frutas</a></li>
+                    <li><a href="#">Verduras</a></li>
+                    <li><a href="#">Lácteos</a></li>
+                </ul>
+            </div>   
         </div>
         <nav class="navbar__left">
             <img src="assets/images/logotipo.svg" alt="Logotipo" class="navbar__brand">
