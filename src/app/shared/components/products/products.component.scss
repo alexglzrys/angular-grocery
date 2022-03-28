@@ -33,6 +33,29 @@
             right: calc(50% - (1200px / 2));
         }
     }
+    &__total {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        padding: 1rem;
+        background-color: crimson;
+        color: #fff;
+        width: 200px;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        border-radius: 100% 0 0 0;
+        span {
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 300;
+            margin-bottom: .5rem;
+        }
+    }
 }
 :host ::ng-deep app-product-card .product-card {
     margin: auto;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../interfaces/product';
+import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'app-products',
@@ -44,15 +45,15 @@ export class ProductsComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private storeService: StoreService) { }
 
   ngOnInit(): void {
+    this.myShoppingCart = this.storeService.getMyShoppingCart();
   }
 
   addToShoppingCart(product: Product) {
-    this.myShoppingCart.push(product)
-    this.count = this.myShoppingCart.length;
-    // Calcular el monto total de la compra, con base a los productos agregados al carrito - acumulador
-    this.total = this.myShoppingCart.reduce((sum, product) => sum + product.price, 0);
+    this.storeService.addToShoppingCart(product);
+    this.count = this.storeService.getNumberProducts();
+    this.total = this.storeService.getTotal();
   }
 }
