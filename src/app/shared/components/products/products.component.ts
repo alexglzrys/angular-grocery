@@ -22,6 +22,7 @@ export class ProductsComponent implements OnInit {
     this.myShoppingCart = this.storeService.getMyShoppingCart();
     this.productService.getAllProducts().subscribe(products => {
       this.products = products;
+      console.log(products)
     })
   }
 

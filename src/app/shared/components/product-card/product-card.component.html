@@ -6,6 +6,7 @@
         <div class="product-card__description">
             <p class="product-card__price">{{ product.price| currency }}</p>
             <h3 class="product-card__title">{{ product.title}}</h3>
+            <p class="product-card__date">Publicado hace {{ product.date | timeAgo }}</p>
         </div>
         <div>
             <fa-icon [icon]="faShoppingCart" (click)="addToCart()" class="product-card__icon"></fa-icon>

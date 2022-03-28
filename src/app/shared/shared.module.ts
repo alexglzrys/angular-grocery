@@ -5,6 +5,7 @@ import { ProductImageComponent } from './components/product-image/product-image.
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProductsComponent } from './components/products/products.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { TimeAgoPipe } from './pipes/time-ago.pipe';
 
 
 
@@ -13,7 +14,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ProductCardComponent,
     ProductImageComponent,
     ProductsComponent,
-    NavbarComponent
+    NavbarComponent,
+    TimeAgoPipe
   ],
   imports: [
     CommonModule,
