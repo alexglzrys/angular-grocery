@@ -1,10 +1,14 @@
 <div class="product-card">
-    <app-product-image [image]="product.image" [title]="product.name" (onLoaded)="imageLoaded($event)" class="product-card__image"></app-product-image>
+    <div class="product-card__visor">
+        <app-product-image [image]="product.image" [title]="product.title" (onLoaded)="imageLoaded($event)" class="product-card__image"></app-product-image>
+    </div>
     <div class="product-card__body">
         <div class="product-card__description">
             <p class="product-card__price">{{ product.price| currency }}</p>
-            <h3 class="product-card__title">{{ product.name}}</h3>
+            <h3 class="product-card__title">{{ product.title}}</h3>
         </div>
-        <fa-icon [icon]="faShoppingCart" (click)="addToCart()" class="product-card__icon"></fa-icon>
+        <div>
+            <fa-icon [icon]="faShoppingCart" (click)="addToCart()" class="product-card__icon"></fa-icon>
+        </div>
     </div>
 </div>

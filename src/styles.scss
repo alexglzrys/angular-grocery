@@ -23,9 +23,11 @@ body {
 // Estilos especiales para la imagen de una tarjeta referente a un producto
 .product-card {
     &__image img {
-        width: 360px;
+        /*width: 360px;
         height: 250px !important;
-        object-fit: cover;
+        object-fit: cover;*/
+        width: auto !important;
+        height: 220px !important;
         border-radius: 1rem;
         display: block;
     }
