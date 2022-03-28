@@ -8,6 +8,9 @@ import { Product } from '../../interfaces/product';
 })
 export class ProductsComponent implements OnInit {
 
+  myShoppingCart: Product[] = [];
+  count: number = 0;
+  total: number = 0;
   products: Product[] = [
     {
       id: '1',
@@ -46,4 +49,10 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addToShoppingCart(product: Product) {
+    this.myShoppingCart.push(product)
+    this.count = this.myShoppingCart.length;
+    // Calcular el monto total de la compra, con base a los productos agregados al carrito - acumulador
+    this.total = this.myShoppingCart.reduce((sum, product) => sum + product.price, 0);
+  }
 }

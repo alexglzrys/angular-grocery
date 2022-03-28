@@ -5,6 +5,6 @@
             <p class="product-card__price">{{ product.price| currency }}</p>
             <h3 class="product-card__title">{{ product.name}}</h3>
         </div>
-        <fa-icon [icon]="faShoppingCart" class="product-card__icon"></fa-icon>
+        <fa-icon [icon]="faShoppingCart" (click)="addToCart()" class="product-card__icon"></fa-icon>
     </div>
 </div>
