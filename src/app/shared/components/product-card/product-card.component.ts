@@ -13,6 +13,7 @@ export class ProductCardComponent {
   faShoppingCart = faShoppingCart
 
   @Output() addToShoppingCart: EventEmitter<Product> = new EventEmitter<Product>();
+  @Output() getProductDetail: EventEmitter<string> = new EventEmitter<string>();
  
   constructor() { }
 
@@ -23,5 +24,9 @@ export class ProductCardComponent {
   addToCart() {
     // Informar al componente padre que producto se ha decidido agregar al carrito de la compra
     this.addToShoppingCart.emit(this.product);
+  }
+
+  productDetail() {
+    this.getProductDetail.emit(this.product.id); 
   }
 }

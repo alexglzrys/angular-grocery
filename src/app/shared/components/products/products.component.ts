@@ -14,6 +14,8 @@ export class ProductsComponent implements OnInit {
   //count: number = 0;
   total: number = 0;
   products: Product[] = [];
+  product!: Product;
+  showSidebarProductDetail: boolean = false;
 
   constructor(private storeService: StoreService,
               private productService: ProductService) { }
@@ -30,5 +32,13 @@ export class ProductsComponent implements OnInit {
     this.storeService.addToShoppingCart(product);
     //this.count = this.storeService.getNumberProducts();
     this.total = this.storeService.getTotal();
+  }
+
+  getProduct(id: string) {
+    this.showSidebarProductDetail = true;
+    this.productService.getProduct(id).subscribe(product => {
+      this.product = product;
+      console.log(product);
+    });
   }
 }

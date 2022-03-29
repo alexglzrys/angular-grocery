@@ -21,6 +21,11 @@ export class ProductService {
     )
   }
 
+  getProduct(id: string): Observable<Product> {
+    const URL = `${API_STORE}/products/${id}`;
+    return this.http.get<Product>(URL);
+  }
+
   private getRandomDate() {
     const maxDate = Date.now();
     const timestamp = Math.floor(Math.random() * maxDate);

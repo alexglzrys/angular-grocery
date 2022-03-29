@@ -1,5 +1,5 @@
 <div class="product-card">
-    <div class="product-card__visor">
+    <div class="product-card__visor" (click)="productDetail()">
         <app-product-image [image]="product.images[0]" [title]="product.title" (loaded)="imageLoaded($event)" class="product-card__image"></app-product-image>
     </div>
     <div class="product-card__body">

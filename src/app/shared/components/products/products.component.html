@@ -1,8 +1,13 @@
 <div class="products">
     <div class="products__container">
         <!-- Escuchar el evento personalizado para agregar el producto que viaja en el evento al carrito de la compra -->
-        <app-product-card *ngFor="let product of products" [product]="product" (addToShoppingCart)="addToShoppingCart($event)"></app-product-card>
+        <app-product-card *ngFor="let product of products" [product]="product" 
+            (addToShoppingCart)="addToShoppingCart($event)"
+            (getProductDetail)="getProduct($event)"></app-product-card>
         <!-- <div class="products__info">{{ count }}</div> -->
         <div class="products__total"><span>Total a pagar</span>{{ total | currency }}</div>
+    </div>
+    <div class="products__sidebar" [class.active]="showSidebarProductDetail">
+        <h3>Detalle del producto</h3>
     </div>
 </div>
