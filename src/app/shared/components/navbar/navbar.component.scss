@@ -57,6 +57,22 @@
             color: crimson;
         }
     }
+    &__shopping-count {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        width: 20px;
+        text-align: center;
+        line-height: 20px;
+        font-size: .7rem;
+        background-color: crimson;
+        color: #fff;
+        border-radius: 50%;
+        font-weight: 700;
+        @media screen and (min-width: 1232px) {
+            right: calc(50% - (1200px / 2));
+        }
+    }
 }
 
 .sidemenu {
