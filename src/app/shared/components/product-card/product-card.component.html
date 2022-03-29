@@ -1,6 +1,6 @@
 <div class="product-card">
     <div class="product-card__visor">
-        <app-product-image [image]="product.image" [title]="product.title" (onLoaded)="imageLoaded($event)" class="product-card__image"></app-product-image>
+        <app-product-image [image]="product.image" [title]="product.title" (loaded)="imageLoaded($event)" class="product-card__image"></app-product-image>
     </div>
     <div class="product-card__body">
         <div class="product-card__description">
