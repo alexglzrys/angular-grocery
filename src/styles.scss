@@ -4,6 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap');
 // Resets
 @import url('./reset.css');
+@import '~swiper/css/bundle';
 
 * {
     margin: 0;
@@ -31,4 +32,11 @@ body {
         border-radius: 1rem;
         display: block;
     }
+}
+
+.swiper {
+    padding-bottom: 2rem;
+}
+.swiper-pagination {
+    bottom: .5rem !important;
 }

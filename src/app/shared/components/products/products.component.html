@@ -7,7 +7,21 @@
         <!-- <div class="products__info">{{ count }}</div> -->
         <div class="products__total"><span>Total a pagar</span>{{ total | currency }}</div>
     </div>
-    <div class="products__sidebar" [class.active]="showSidebarProductDetail">
-        <h3>Detalle del producto</h3>
+    <div class="sidebar" *ngIf="product" [class.active]="showSidebarProductDetail">
+        <fa-icon class="sidebar__close" [icon]="faTimesCircle" (click)="toggleSidebarProductDetail()"></fa-icon>
+        <swiper [config]="config">
+            <ng-template swiperSlide *ngFor="let img of product.images">
+                <img [src]="img" class="sidebar__image" [alt]="product.title">
+            </ng-template>
+        </swiper>
+        <div class="sidebar__body">
+            <p class="sidebar__price">{{ product.price | currency }}</p>
+            <h3 class="sidebar__title">{{ product.title }}</h3>
+            <p class="sidebar__description">{{ product.description}}</p>
+            <button class="sidebar__button" (click)="addToShoppingCart(product)">
+                <fa-icon [icon]="faShoppingCart" class="product-card__icon"></fa-icon>
+                Agregar al carrito
+            </button>
+        </div>
     </div>
 </div>

@@ -1,7 +1,12 @@
+import { faShoppingCart, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../interfaces/product';
+import SwiperCore, { Pagination, SwiperOptions } from 'swiper';
 import { StoreService } from '../../services/store.service';
 import { ProductService } from '../../services/product.service';
+
+// Instalar módulos independientes de Swiper
+SwiperCore.use([Pagination]);
 
 @Component({
   selector: 'app-products',
@@ -10,12 +15,21 @@ import { ProductService } from '../../services/product.service';
 })
 export class ProductsComponent implements OnInit {
 
+  faShoppingCart = faShoppingCart;
+  faTimesCircle = faTimesCircle;
   myShoppingCart: Product[] = [];
   //count: number = 0;
   total: number = 0;
   products: Product[] = [];
   product!: Product;
   showSidebarProductDetail: boolean = false;
+  config: SwiperOptions = {
+    slidesPerView: 1,
+    pagination: {
+      clickable: true,
+    },
+    autoplay: true,
+  }
 
   constructor(private storeService: StoreService,
               private productService: ProductService) { }
@@ -29,16 +43,23 @@ export class ProductsComponent implements OnInit {
   }
 
   addToShoppingCart(product: Product) {
+    this.showSidebarProductDetail = false;
     this.storeService.addToShoppingCart(product);
     //this.count = this.storeService.getNumberProducts();
     this.total = this.storeService.getTotal();
   }
 
+  toggleSidebarProductDetail() {
+    this.showSidebarProductDetail = !this.showSidebarProductDetail;
+  }
+
   getProduct(id: string) {
-    this.showSidebarProductDetail = true;
     this.productService.getProduct(id).subscribe(product => {
+      
       this.product = product;
-      console.log(product);
+     // this.toggleSidebarProductDetail();
+     this.showSidebarProductDetail = true;
+      console.log(product)
     });
   }
 }
