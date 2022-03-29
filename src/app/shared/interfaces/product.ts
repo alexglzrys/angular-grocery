@@ -3,7 +3,12 @@ export interface Product {
     title: string;
     description: string;
     price: number;
-    category: string;
-    image: string;
+    category: Category;
+    images: string[];
     date: Date
+}
+
+export interface Category {
+    id: number;
+    name: string;
 }

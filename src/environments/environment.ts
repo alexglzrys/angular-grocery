@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  //api_store: 'https://fakestoreapi.com',
+  api_store: 'https://young-sands-07814.herokuapp.com/api',
 };
 
 /*
