@@ -8,6 +8,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { SwiperModule } from 'swiper/angular';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -22,7 +23,7 @@ import { SwiperModule } from 'swiper/angular';
   imports: [
     CommonModule,
     FontAwesomeModule,
-    SwiperModule
+    SwiperModule,
   ],
   exports: [
     ProductsComponent,
