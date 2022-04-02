@@ -37,6 +37,11 @@ export class ProductService {
     return this.http.put<Product>(URL, dto);
   }
 
+  delete(id: string): Observable<boolean> {
+    const URL = `${API_STORE}/products/${id}`;
+    return this.http.delete<boolean>(URL);
+  }
+
   private getRandomDate() {
     const maxDate = Date.now();
     const timestamp = Math.floor(Math.random() * maxDate);

@@ -4,13 +4,15 @@ import { CreateProductComponent } from './pages/create-product/create-product.co
 import { CmsRoutingModule } from './cms-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditProductComponent } from './pages/edit-product/edit-product.component';
+import { ListProductComponent } from './pages/list-product/list-product.component';
 
 
 
 @NgModule({
   declarations: [
     CreateProductComponent,
-    EditProductComponent
+    EditProductComponent,
+    ListProductComponent
   ],
   imports: [
     CommonModule,
