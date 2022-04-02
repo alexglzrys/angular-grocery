@@ -1,0 +1,63 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+img {
+    width: 80px;
+    display: block;
+    margin-bottom: 1rem;
+}
+h3 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+form {
+    max-width: 768px;
+    width: 100%;
+    background-color: rgb(242, 242, 242);
+    padding: 2rem;
+    border-radius: .25rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    @media screen and (min-width: 600px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+label {
+    display: block;
+    margin-bottom: .5rem;
+    font-size: .9rem;
+}
+input, textarea, select {
+    width: 100%;
+    padding: .5rem;
+    resize: none;
+    background-color: #fff;
+}
+button {
+    background-color: rgb(65, 65, 169);
+    color: #fff;
+    width: 150px;
+    padding: .5rem;
+    display: block;
+    cursor: pointer;
+    font-size: .9rem;
+    font-weight: 700;
+    align-self: end;
+    justify-self: center;
+    border-radius: .25rem;
+    transition: all .2s;
+    &:hover {
+        background-color: darken(rgb(65, 65, 169), 5) ;
+    }
+    &:disabled {
+        opacity: .5;
+    }
+}

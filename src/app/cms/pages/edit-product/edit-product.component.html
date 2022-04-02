@@ -1,0 +1,30 @@
+<img src="assets/images/logotipo.svg" alt="Logotipo">
+<h3>Editar Producto</h3>
+<form [formGroup]="formProduct" (ngSubmit)="updateProduct()">
+    <div class="form-group">
+        <label for="">Titulo</label>
+        <input type="text" formControlName="title" placeholder="Titulo del producto">
+    </div>
+    <div class="form-group">
+        <label for="">Precio</label>
+        <input type="number" formControlName="price" placeholder="Precio del producto">
+    </div>
+    <div class="form-group">
+        <label for="">Descripcion</label>
+        <textarea formControlName="description" placeholder="Descripción corta del producto" rows="5"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="">Imagenes</label>
+        <textarea formControlName="images" placeholder="URLs separadas por comas" rows="5"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="">Categoría</label>
+        <select formControlName="categoryId">
+            <option value="" selected disabled>Seleccione una categoría</option>
+            <option value="1">Categoría 1</option>
+            <option value="2">Categoría 2</option>
+            <option value="3">Categoría 3</option>
+        </select>
+    </div>
+    <button type="submit" [disabled]="formProduct.invalid">Actualizar</button>
+</form>

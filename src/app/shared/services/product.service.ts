@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators'
 import { Product } from '../interfaces/product';
 import { environment } from '../../../environments/environment';
-import { CreateProductDTO } from '../dtos/create-product-dto';
+import { CreateProductDTO, UpdateProductDTO } from '../dtos/product';
 
 const API_STORE = environment.api_store;
 
@@ -30,6 +30,11 @@ export class ProductService {
   create(dto: CreateProductDTO): Observable<Product> {
     const URL = `${API_STORE}/products`;
     return this.http.post<Product>(URL, dto);
+  }
+
+  update(id: string, dto: UpdateProductDTO): Observable<Product> {
+    const URL = `${API_STORE}/products/${id}`;
+    return this.http.put<Product>(URL, dto);
   }
 
   private getRandomDate() {

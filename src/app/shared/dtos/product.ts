@@ -5,3 +5,9 @@ import { Product } from '../interfaces/product';
 export interface CreateProductDTO extends Omit<Product, 'id' | 'category'> {
     categoryId: number;
 }
+
+// Data Transfer Object
+// ? Al actualizar un producto, su interfaz es similar a CreateProductDTO, pero con todos los datos opcionales (para el caso de un método PATCH)
+export interface UpdateProductDTO extends Partial<CreateProductDTO> {
+    
+}
