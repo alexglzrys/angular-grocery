@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   //api_store: 'https://fakestoreapi.com',
-  api_store: 'https://young-sands-07814.herokuapp.com/api',
+  api_store: '/api'
 };
 
 /*

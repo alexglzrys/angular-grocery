@@ -34,7 +34,7 @@ export class StoreService {
 
   getTotal(): number {
     // Calcular el monto total de la compra, con base a los productos agregados al carrito - acumulador
-   return this.myShoppingCart.reduce((sum, product) => sum + product.price, 0);
+    return this.myShoppingCart.reduce((sum, product) => sum + product.price, 0);
   }
 
   getNumberProducts(): number {

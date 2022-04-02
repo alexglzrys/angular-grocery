@@ -2,26 +2,51 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.4.
 
-## Development server
+## Problemas de CORS
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Algunas API's son estrictas y solo permiten conectarse a ellas desde ciertos origenes (dominios), los que ocasiona que en modo desarrollo sea imposible establecer comunicación y obtener como resultado un problema de Intercambio de Origenes Cruzados.
 
-## Code scaffolding
+La solución temporal ante este problema **es generar un archivo de configuración Proxy** que nos permita cambiar el Origen de nuestra aplicación **por ejemplo http://localhost:3000**, por el origen propio del API **por ejemplo https://young-sands-07814.herokuapp.com/api**, para simular que la petición sale directamente del dominio donde se encuentra alojada la API, evitando así el problema de CORS.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Es importante señalar que esta técnica solo funcionará **en ambientes de desarrollo**. Por lo que es importante mencionar al equipo de Backend que habilite el CORS en ciertos endPoints con base al dominio utilizado para nuestra aplicación Frontend. 
 
-## Build
+Sin embargo, antes de empaquetar nuestra aplicación para producción, es necesario hacer uso de las URLs correctas, y subir nuestra aplicación Frontend a alguno de los dominios permitidos. 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Archivo proxy.config.json (raíz de proyecto)
+```
+{
+    // Cualquier petición HTTP que tenga en su path /api
+    // Simular su origen de salida desde "https://young-sands-07814.herokuapp.com", y no desde http://localhost:4200
 
-## Running unit tests
+    "/api": {
+        "target": "https://young-sands-07814.herokuapp.com",
+        "secure": true,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Archivo angular.json
+```
+"architect": {
+    // build, etc
+    "serve": {
+        "builder": "@angular-devkit/build-angular:dev-server",
+        "options": {
+            "proxyConfig": "./proxy.config.json"
+        }
+    },
+    // configuration, etc.   
+}
+```
 
-## Running end-to-end tests
+Environment
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
+  // api_store: 'https://young-sands-07814.herokuapp.com/api',
+  api_store: '/api'
 
-## Further help
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Finalmente ejecutar **ng serve -o**
