@@ -8,6 +8,7 @@
         <!-- <div class="products__info">{{ count }}</div> -->
         <div class="products__total"><span>Total a pagar</span>{{ total | currency }}</div>
     </div>
+    <button class="btn-load" #btnLoad (click)="loadMoreProducts()">Cargar más productos</button>
     <div class="sidebar" *ngIf="product" [class.active]="showSidebarProductDetail">
         <fa-icon class="sidebar__close" [icon]="faTimesCircle" (click)="toggleSidebarProductDetail()"></fa-icon>
         <swiper [config]="config">

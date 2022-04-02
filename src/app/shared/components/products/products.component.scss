@@ -17,6 +17,19 @@
             grid-template-columns: repeat(4, 1fr);
         }
     }
+    .btn-load {
+        display: block;
+        padding: .8rem 1rem;
+        background-color: crimson;
+        color: #fff;
+        cursor: pointer;
+        margin: 2rem auto 1.5rem;
+        border-radius: .25rem;
+        transition: all .2s;
+        &:hover {
+            background-color: darken(crimson, 10);
+        }
+    }
    /*&__info {
         position: absolute;
         right: 1rem;

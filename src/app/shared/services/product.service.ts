@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {map} from 'rxjs/operators'
+import {map, retry} from 'rxjs/operators'
 import { Product } from '../interfaces/product';
 import { environment } from '../../../environments/environment';
 import { CreateProductDTO, UpdateProductDTO } from '../dtos/product';
@@ -15,9 +15,21 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getAllProducts(): Observable<Product[]> {
+  getAllProducts(limit?: number, offset?: number): Observable<Product[]> {
     const URL = `${API_STORE}/products`;
-    return this.http.get<Product[]>(URL).pipe(
+
+    // Los parámetros de ruta son opcionales en el endPoint, estos permiten realizar paginación
+    let params = new HttpParams();
+    if (limit !== undefined && offset !== undefined) {
+      params = params.append('limit', limit!);
+      params = params.append('offset', offset!);
+    }
+
+    console.log(params)
+
+    return this.http.get<Product[]>(URL, { params }).pipe(
+      // En caso de error, reintentar 3 veces más por si alguna de las peticiones falla (redes inestables)
+      retry(3),
       map(products => products.map(product => ({...product, 'date': this.getRandomDate()})))
     )
   }

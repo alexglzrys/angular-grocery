@@ -1,5 +1,5 @@
 import { faShoppingCart, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Product } from '../../interfaces/product';
 import SwiperCore, { Pagination, SwiperOptions } from 'swiper';
 import { StoreService } from '../../services/store.service';
@@ -31,14 +31,28 @@ export class ProductsComponent implements OnInit {
     autoplay: true,
   }
 
+  // Paginación
+  limit: number = 8;
+  offset: number = 0;
+  @ViewChild('btnLoad') btnLoad!: ElementRef;
+
   constructor(private storeService: StoreService,
               private productService: ProductService) { }
 
   ngOnInit(): void {
     this.myShoppingCart = this.storeService.getMyShoppingCart();
-    this.productService.getAllProducts().subscribe(products => {
-      this.products = products;
-      console.log(products)
+    this.fetchProducts();
+  }
+
+  fetchProducts() {
+    // Devolver listado de productos paginados
+    this.productService.getAllProducts(this.limit, this.offset).subscribe(products => {
+      this.offset += this.limit;
+      // Sumar al listado actual el nuevo lote de resultados
+      if (products.length) 
+        this.products = this.products.concat(products);
+      else
+        this.btnLoad.nativeElement.style.display = 'none';
     })
   }
 
@@ -61,5 +75,9 @@ export class ProductsComponent implements OnInit {
      this.showSidebarProductDetail = true;
       console.log(product)
     });
+  }
+
+  loadMoreProducts() {
+    this.fetchProducts();
   }
 }
