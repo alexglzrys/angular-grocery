@@ -5,6 +5,7 @@ import { map, retry, catchError, switchMap } from 'rxjs/operators'
 import { Product } from '../interfaces/product';
 import { environment } from '../../../environments/environment';
 import { CreateProductDTO, UpdateProductDTO } from '../dtos/product';
+import { activateCheckTime } from '../interceptors/time.interceptor';
 
 const API_STORE = environment.api_store;
 
@@ -36,8 +37,10 @@ export class ProductService {
 
   getProduct(id: string): Observable<Product> {
     const URL = `${API_STORE}/products/${id}`;
+    // ! Esta petición necesita hacer uso del intereptor de tiempo de respuesta HTTP (timeInterceptor), para ello es necesario invocar la función de activación como valor del contexto
+    
     // Se recomienda controlar los errores directamente desde el servicio
-    return this.http.get<Product>(URL).pipe(
+    return this.http.get<Product>(URL, { context: activateCheckTime() }).pipe(
       // Transformar el flujo en un arreglo (map), y como solo es un Producto, lo transformo para agregarle más propiedades
       map(product => ({...product, 'date': this.getRandomDate(), 'taxes': this.calculateTaxes(product.price)})),
       catchError((error: HttpErrorResponse) => {

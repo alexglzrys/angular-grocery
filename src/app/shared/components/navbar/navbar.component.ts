@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faShoppingCart, faBars, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { StoreService } from '../../services/store.service';
 import { User } from '../../dtos/user';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +20,8 @@ export class NavbarComponent implements OnInit {
 
   profile: User | null = null;
 
-  constructor(private storeService: StoreService) { }
+  constructor(private storeService: StoreService,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     // Suscribirnos al Observable del carrito de compras 
@@ -38,9 +40,7 @@ export class NavbarComponent implements OnInit {
   }
 
   isLogged() {
-    const profile = window.localStorage.getItem('profile') || null;
-    if (profile) 
-      this.profile = JSON.parse(profile);
+    this.profile = this.authService.isLogged();
   }
 
 }

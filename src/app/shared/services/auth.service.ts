@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment';
 import { Auth } from '../dtos/auth';
 import { User } from '../dtos/user';
 import { switchMap } from 'rxjs/operators';
+import { TokenService } from './token.service';
 
 const API_URL = environment.api_store;
 
@@ -13,7 +14,8 @@ const API_URL = environment.api_store;
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private tokenService: TokenService) { }
 
   login(email: string, password: string): Observable<Auth> {
     const URL = `${API_URL}/auth/login`;
@@ -31,14 +33,8 @@ export class AuthService {
     const URL = `${API_URL}/auth`;
     return this.http.post<Auth>(`${URL}/login`, {email, password}).pipe(
       switchMap(auth => {
-        window.localStorage.setItem('token', auth.access_token);
-
-        // Agregar token en los headers de la petición
-        const token = window.localStorage.getItem('token')
-        let headers = new HttpHeaders();
-        headers = headers.set('Authorization', `Bearer ${token}`);
-
-        return this.http.get<User>(`${URL}/profile`, { headers });
+        this.tokenService.saveToken(auth.access_token);
+        return this.http.get<User>(`${URL}/profile`);
       }),
       catchError((error: HttpErrorResponse) => {
         if (error.status === HttpStatusCode.Unauthorized) return throwError(() => new Error('Credenciales incorrectas'));
@@ -51,11 +47,14 @@ export class AuthService {
   profile(): Observable<User> {
     const URL = `${API_URL}/auth/profile`;
 
-    // Agregar token en los headers de la petición
-    const token = window.localStorage.getItem('token')
-    let headers = new HttpHeaders();
-    headers = headers.set('Authorization', `Bearer ${token}`)
-    
-    return this.http.get<User>(URL, { headers });
+    // El token en esta petición se agrega mediante el uso de un interceptor
+    return this.http.get<User>(URL);
+  }
+
+  isLogged(): User | null {
+    const profile = localStorage.getItem('profile') || null;
+    if (profile) 
+      return JSON.parse(profile);
+    return null;
   }
 }

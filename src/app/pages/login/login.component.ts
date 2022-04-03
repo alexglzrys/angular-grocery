@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
 
       this.autService.loginAndProfile(email, password).subscribe({
         next: (user) => {
+
           window.localStorage.setItem('profile', JSON.stringify(user));
           this.router.navigateByUrl('/');
         },
