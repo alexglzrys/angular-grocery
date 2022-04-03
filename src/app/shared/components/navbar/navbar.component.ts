@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faShoppingCart, faBars, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { StoreService } from '../../services/store.service';
+import { User } from '../../dtos/user';
 
 @Component({
   selector: 'app-navbar',
@@ -16,6 +17,8 @@ export class NavbarComponent implements OnInit {
   activeSidebar = false;
   countProducts: number = 0;
 
+  profile: User | null = null;
+
   constructor(private storeService: StoreService) { }
 
   ngOnInit(): void {
@@ -26,11 +29,18 @@ export class NavbarComponent implements OnInit {
     this.storeService.myShoppingCart$.subscribe(products => {
       this.countProducts = products.length;
     });
+    this.isLogged();
   }
 
   // Ocultar o mostrar el sidebar en modo mobile
   toggleSidebar() {
     this.activeSidebar = !this.activeSidebar;
+  }
+
+  isLogged() {
+    const profile = window.localStorage.getItem('profile') || null;
+    if (profile) 
+      this.profile = JSON.parse(profile);
   }
 
 }

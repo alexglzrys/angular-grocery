@@ -27,7 +27,8 @@
             </ul>
         </nav>
         <div class="navbar__right">
-            <p class="navbar__email">alejandro@correo.com</p>
+            <p *ngIf="profile" class="navbar__email">{{ profile.email }}</p>
+            <a *ngIf="!profile" class="navbar__button" [routerLink]="['pages/login']">Login</a>
             <div class="navbar__shopping-cart">
                 <div class="navbar__shopping-count">{{ countProducts }}</div>
                 <fa-icon [icon]="faShoppingCart"></fa-icon>

@@ -24,10 +24,12 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     FontAwesomeModule,
     SwiperModule,
+    RouterModule,
   ],
   exports: [
     ProductsComponent,
-    NavbarComponent
+    NavbarComponent,
+    RouterModule
   ]
 })
 export class SharedModule { }
