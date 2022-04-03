@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpParams, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { map, retry, catchError } from 'rxjs/operators'
+import { map, retry, catchError, first, take, single } from 'rxjs/operators'
 import { Product } from '../interfaces/product';
 import { environment } from '../../../environments/environment';
 import { CreateProductDTO, UpdateProductDTO } from '../dtos/product';
@@ -25,12 +25,12 @@ export class ProductService {
       params = params.append('offset', offset!);
     }
 
-    console.log(params)
-
     return this.http.get<Product[]>(URL, { params }).pipe(
       // En caso de error, reintentar 3 veces más por si alguna de las peticiones falla (redes inestables)
       retry(3),
-      map(products => products.map(product => ({...product, 'date': this.getRandomDate()})))
+      // Transformar la respuesta que retorna el API (Agregar fecha de publicación e impuestos calculados)
+      // Me interesa retornar un arreglo de Productos, por eso uso el map de los arreglos JS nativo
+      map(products => products.map(product => ({...product, 'date': this.getRandomDate(), 'taxes': this.calculateTaxes(product.price)})))
     )
   }
 
@@ -38,6 +38,8 @@ export class ProductService {
     const URL = `${API_STORE}/products/${id}`;
     // Se recomienda controlar los errores directamente desde el servicio
     return this.http.get<Product>(URL).pipe(
+      // Transformar el flujo en un arreglo (map), y como solo es un Producto, lo transformo para agregarle más propiedades
+      map(product => ({...product, 'date': this.getRandomDate(), 'taxes': this.calculateTaxes(product.price)})),
       catchError((error: HttpErrorResponse) => {
         // Decorar el mensaje de error con base al código de estado de la respuesta
         if (error.status === HttpStatusCode.NotFound) return throwError(() => new Error('El producto no fue localizado'));
@@ -67,5 +69,9 @@ export class ProductService {
     const maxDate = Date.now();
     const timestamp = Math.floor(Math.random() * maxDate);
     return new Date(timestamp);
+  }
+
+  private calculateTaxes(price: number): number {
+    return price * 0.16;
   }
 }

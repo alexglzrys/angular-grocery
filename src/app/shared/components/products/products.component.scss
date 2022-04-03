@@ -102,11 +102,16 @@
             object-fit: cover;
             display: block;
         }
+        &__currency {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: .5rem;
+        }
         &__price {
             color: rgb(48, 47, 47);
             font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: .5rem;
+            
         }
         &__title {
             font-size: 1.2rem;

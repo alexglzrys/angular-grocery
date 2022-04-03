@@ -73,7 +73,6 @@ export class ProductsComponent implements OnInit {
   }
 
   getProduct(id: string) {
-    //id += '481818'
     this.statusRequest = 'loader';
     this.productService.getProduct(id).subscribe({
       next: product => {

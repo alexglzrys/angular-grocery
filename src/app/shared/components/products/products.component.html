@@ -21,7 +21,10 @@
             </ng-template>
         </swiper>
         <div class="sidebar__body">
-            <p class="sidebar__price">{{ product.price | currency }}</p>
+            <div class="sidebar__currency">
+                <p class="sidebar__price">{{ product.price | currency }}</p>
+                <p class="sidebar__price">IVA: {{ product.taxes! | currency }}</p>
+            </div>
             <h3 class="sidebar__title">{{ product.title }}</h3>
             <p class="sidebar__description">{{ product.description}}</p>
             <button class="sidebar__button" (click)="addToShoppingCart(product)">
