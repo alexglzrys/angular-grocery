@@ -1,0 +1,14 @@
+<img src="assets/images/logotipo.svg" alt="Logotipo">
+<h3>Incio de sesión</h3>
+<form [formGroup]="formLogin" (ngSubmit)="login()">
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email" placeholder="Correo electrónico">
+    </div>
+    <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" formControlName="password" placeholder="Contraseña">
+    </div>
+    <button type="submit" [disabled]="formLogin.invalid">Acceder</button>
+</form>
+
