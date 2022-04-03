@@ -9,6 +9,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { SwiperModule } from 'swiper/angular';
 import { RouterModule } from '@angular/router';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -18,7 +19,8 @@ import { RouterModule } from '@angular/router';
     ProductImageComponent,
     ProductsComponent,
     NavbarComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
+    FooterComponent
   ],
   imports: [
     CommonModule,

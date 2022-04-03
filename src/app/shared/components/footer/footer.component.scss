@@ -1,0 +1,18 @@
+.footer {
+    padding: 3rem 1rem;
+    background-color: rgb(240, 240, 240);
+    &__container {
+        max-width: 1200px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 1rem;
+    }
+    p, a {
+        color: gray;
+        font-size: .9rem;
+    }
+    a {
+        text-decoration: underline;
+    }
+}

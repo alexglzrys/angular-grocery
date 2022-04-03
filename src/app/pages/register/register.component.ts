@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FileService } from 'src/app/shared/services/file.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -15,7 +16,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private userService: UserService,
-              private router: Router) { }
+              private router: Router,
+              private fileService: FileService) { }
 
   ngOnInit(): void {
     this.formRegister = this.fb.group({
@@ -28,6 +30,7 @@ export class RegisterComponent implements OnInit {
   createUser() {
     if (this.formRegister.valid) {
       this.userService.create(this.formRegister.value).subscribe(user => {
+        this.downloadFileRegister()
         Swal.fire({
           title: 'Felicidades',
           text: 'Usuario registrado correctamente',
@@ -40,6 +43,13 @@ export class RegisterComponent implements OnInit {
         });
       })
     }
+  }
+
+  downloadFileRegister() {
+    // Descargar un archivo de forma programatica (el archivo debe existir previamente en el servidor)
+    this.fileService.getFile('my.pdf', 'https://young-sands-07814.herokuapp.com/api/files/dummy.pdf', 'application/pdf').subscribe(file => {
+      console.log('archivo descargado')
+    });
   }
 
 }
