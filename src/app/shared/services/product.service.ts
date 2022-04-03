@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpParams, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { map, retry, catchError, first, take, single } from 'rxjs/operators'
+import { Observable, throwError, zip } from 'rxjs';
+import { map, retry, catchError, switchMap } from 'rxjs/operators'
 import { Product } from '../interfaces/product';
 import { environment } from '../../../environments/environment';
 import { CreateProductDTO, UpdateProductDTO } from '../dtos/product';
@@ -64,6 +64,33 @@ export class ProductService {
     const URL = `${API_STORE}/products/${id}`;
     return this.http.delete<boolean>(URL);
   }
+
+  // ! Evitar el Callback Hell - Observables
+  // ? Operador switchMap() - Para peticiones que dependen una de la otra
+  // ? zip() - Para peticiones que no tienen dependencia (equivalente a Promise.all())
+  //          * El resultado en zip es un Observable de tipo arreglo, cada elemento representa la respuesta ordenada de cada petición 
+
+  findAndUpdateAndDelete(id: string, dto: UpdateProductDTO): Observable<boolean> {
+    const URL = `${API_STORE}/products/${id}`;
+    return this.http.get<Product>(URL).pipe(
+      switchMap(product => this.http.put<Product>(URL, dto)),
+      switchMap(productUpdated => this.http.delete<boolean>(URL))
+    );
+  }
+
+  createUpdateDeleteList(createProduct: CreateProductDTO, 
+                         idProductUpdate: string, 
+                         updateProduct: UpdateProductDTO, 
+                         idProductDeleted: string): Observable<[Product, Product, boolean, Product[]]> {
+    const URL = `${API_STORE}/products`;
+    return zip([
+      this.http.post<Product>(URL, createProduct),
+      this.http.put<Product>(`${URL}/${idProductUpdate}`, updateProduct),
+      this.http.delete<boolean>(`${URL}/${idProductDeleted}`),
+      this.http.get<Product[]>(URL)
+    ])
+  }
+
 
   private getRandomDate() {
     const maxDate = Date.now();

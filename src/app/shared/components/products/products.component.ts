@@ -47,6 +47,14 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.myShoppingCart = this.storeService.getMyShoppingCart();
     this.fetchProducts();
+
+    /*this.productService.createUpdateDeleteList(
+      {title: 'Hola mundo', description: 'Prueba con zip', price: 12.3, images: ['uno.jpg'], categoryId: 1}, 
+      '2',
+      {title: 'Hola angular', description: 'Prueba con zip angular', price: 12.3, images: ['uno.jpg']}, 
+      '4').subscribe(response => {
+      console.log(response);
+    })*/
   }
 
   fetchProducts() {
