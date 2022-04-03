@@ -1,9 +1,10 @@
-import { faShoppingCart, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faTimesCircle, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Product } from '../../interfaces/product';
 import SwiperCore, { Pagination, SwiperOptions } from 'swiper';
 import { StoreService } from '../../services/store.service';
 import { ProductService } from '../../services/product.service';
+import Swal from 'sweetalert2';
 
 // Instalar módulos independientes de Swiper
 SwiperCore.use([Pagination]);
@@ -17,6 +18,7 @@ export class ProductsComponent implements OnInit {
 
   faShoppingCart = faShoppingCart;
   faTimesCircle = faTimesCircle;
+  faSpinner = faSpinner;
   myShoppingCart: Product[] = [];
   //count: number = 0;
   total: number = 0;
@@ -35,6 +37,9 @@ export class ProductsComponent implements OnInit {
   limit: number = 8;
   offset: number = 0;
   @ViewChild('btnLoad') btnLoad!: ElementRef;
+
+  // Estado de la petición (nula, cargando, completada)
+  statusRequest: null | 'loader' | 'complete' = null;
 
   constructor(private storeService: StoreService,
               private productService: ProductService) { }
@@ -68,12 +73,28 @@ export class ProductsComponent implements OnInit {
   }
 
   getProduct(id: string) {
-    this.productService.getProduct(id).subscribe(product => {
-      
-      this.product = product;
-     // this.toggleSidebarProductDetail();
-     this.showSidebarProductDetail = true;
-      console.log(product)
+    //id += '481818'
+    this.statusRequest = 'loader';
+    this.productService.getProduct(id).subscribe({
+      next: product => {
+        this.product = product;
+        // this.toggleSidebarProductDetail();
+        this.showSidebarProductDetail = true;
+        console.log(product)
+      }, 
+      error: (e) => {
+        // Responder al error decorado por el servicio
+        Swal.fire({
+          title: 'Lo sentimos',
+          text: e,
+          icon: 'error',
+        confirmButtonText: 'Aceptar'
+        })
+      }
+    }).add(() => {
+      // Tras finalizar o completar la petición, hacer tareas de limipieza 
+      // ? En peticiones http, el módulo HttpClient de Angular automáticamente finaliza la suscripción después de que finalice la petición 
+      this.statusRequest = 'complete';
     });
   }
 

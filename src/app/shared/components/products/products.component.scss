@@ -1,5 +1,18 @@
 .products {
     padding: 2rem 1rem;
+    .loader {
+        position: fixed;
+        left: -100px;
+        top: 0;
+        background: crimson;
+        color: #fff;
+        padding: 0.4rem 0.6rem;
+        font-size: .8rem;
+        transition: all .2s;
+        &.active {
+            left: 0;
+        }
+    }
     &__container {
         margin: 0 auto;
         max-width: 1200px;
