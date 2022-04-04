@@ -3,6 +3,7 @@ import { faShoppingCart, faBars, faTimesCircle } from "@fortawesome/free-solid-s
 import { StoreService } from '../../services/store.service';
 import { User } from '../../dtos/user';
 import { AuthService } from '../../services/auth.service';
+import { FileService } from '../../services/file.service';
 
 @Component({
   selector: 'app-navbar',
@@ -19,9 +20,11 @@ export class NavbarComponent implements OnInit {
   countProducts: number = 0;
 
   profile: User | null = null;
+  img_tmp_avatar = 'assets/images/avatar.png';
 
   constructor(private storeService: StoreService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private fileService: FileService) { }
 
   ngOnInit(): void {
     // Suscribirnos al Observable del carrito de compras 
@@ -41,6 +44,17 @@ export class NavbarComponent implements OnInit {
 
   isLogged() {
     this.profile = this.authService.isLogged();
+  }
+
+  // Este método se ejecutará si el control de tipo File cambia en su contenido
+  uploadFile(event: Event) {
+    let fileInputControl = event.target as HTMLInputElement;
+    // Recuperar el archivo adjunto en el control de tipo File
+    const file = fileInputControl.files?.item(0);
+    this.fileService.uploadFile(file!).subscribe(upload => {
+      this.img_tmp_avatar = upload.location;
+      console.log(upload);
+    });
   }
 
 }
