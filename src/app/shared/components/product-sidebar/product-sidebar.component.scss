@@ -1,0 +1,80 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  transition: all .2s;
+  &__body {
+      padding: 2rem;
+  }
+  &.active {
+      right: 0;
+  }
+  &__image {
+      /*height: 250px;*/
+      width: 100%;
+      object-fit: cover;
+      display: block;
+  }
+  &__currency {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: .5rem;
+  }
+  &__price {
+      color: rgb(48, 47, 47);
+      font-size: 1.5rem;
+      font-weight: 700;
+
+  }
+  &__title {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+      color: rgb(75, 75, 75);
+  }
+  &__description {
+      color: rgb(75, 75, 75);
+      line-height: 1.3;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+  }
+  &__button {
+      display: block;
+      background-color: crimson;
+      color: #fff;
+      padding: 1rem;
+      border-radius: .25rem;
+      font-size: 1.2rem;
+      text-align: center;
+      width: 100%;
+      font-weight: 700;
+      margin-top: 2rem;
+      cursor: pointer;
+      transition: all .2s;
+      &:hover {
+          background-color: darken(crimson, 5);
+      }
+  }
+  &__close {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      color: #fff;
+      font-size: 2rem;
+      z-index: 100;
+      cursor: pointer;
+      transition: all .2s;
+      box-shadow: 0 0 3px 1px #fff;
+      border-radius: 50%;
+      &:hover {
+          color: rgb(238, 238, 238);
+      }
+  }
+  @media screen and (min-width: 480px) {
+      width: 70%;
+      max-width: 380px;
+  }
+}

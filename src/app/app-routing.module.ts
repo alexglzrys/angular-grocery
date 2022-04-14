@@ -4,16 +4,24 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductsComponent } from './shared/components/products/products.component';
 import { CmsModule } from './cms/cms.module';
 import { PagesModule } from './pages/pages.module';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', component: ProductsComponent },
-  { 
-    path: 'cms', 
+  {
+    path: '',
+    loadChildren: () => import('./pages/pages.module').then(m => PagesModule)
+  },
+  {
+    path: 'cms',
     loadChildren: () => import('./cms/cms.module').then(m => CmsModule)
   },
   {
     path: 'pages',
     loadChildren: () => import('./pages/pages.module').then(m => PagesModule)
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ]
 

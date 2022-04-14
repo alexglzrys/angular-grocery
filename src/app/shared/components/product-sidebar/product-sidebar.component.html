@@ -1,0 +1,20 @@
+<div class="sidebar" *ngIf="product" [class.active]="showMe">
+  <fa-icon class="sidebar__close" [icon]="faTimesCircle" (click)="close()"></fa-icon>
+  <swiper [config]="config">
+      <ng-template swiperSlide *ngFor="let img of product.images">
+          <img [src]="img" class="sidebar__image" [alt]="product.title">
+      </ng-template>
+  </swiper>
+  <div class="sidebar__body">
+      <div class="sidebar__currency">
+          <p class="sidebar__price">{{ product.price | currency }}</p>
+          <p class="sidebar__price">IVA: {{ product.taxes! | currency }}</p>
+      </div>
+      <h3 class="sidebar__title">{{ product.title }}</h3>
+      <p class="sidebar__description">{{ product.description}}</p>
+      <button class="sidebar__button" (click)="addToShoppingCart()">
+          <fa-icon [icon]="faShoppingCart" class="product-card__icon"></fa-icon>
+          Agregar al carrito
+      </button>
+  </div>
+</div>
