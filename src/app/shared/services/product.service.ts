@@ -38,7 +38,7 @@ export class ProductService {
   getProduct(id: string): Observable<Product> {
     const URL = `${API_STORE}/products/${id}`;
     // ! Esta petición necesita hacer uso del intereptor de tiempo de respuesta HTTP (timeInterceptor), para ello es necesario invocar la función de activación como valor del contexto
-    
+
     // Se recomienda controlar los errores directamente desde el servicio
     return this.http.get<Product>(URL, { context: activateCheckTime() }).pipe(
       // Transformar el flujo en un arreglo (map), y como solo es un Producto, lo transformo para agregarle más propiedades
@@ -50,6 +50,18 @@ export class ProductService {
         if (error.status === HttpStatusCode.InternalServerError) return throwError(() => new Error('Se ha presentado un problema interno en el servidor'));
         return throwError(() => new Error('Ups! algo ha salido mal'));
       })
+    );
+  }
+
+  getByCategory(id: string, limit?: number, offset?: number): Observable<Product[]> {
+    const URL = `${API_STORE}/categories/${id}/products`;
+    let params = new HttpParams();
+    if (limit !== undefined && offset !== undefined) {
+      params = params.append('limit', limit);
+      params = params.append('offset', offset);
+    }
+    return this.http.get<Product[]>(URL, { params }).pipe(
+      map(products => products.map(product => ({...product, 'date': this.getRandomDate(), 'taxes': this.calculateTaxes(product.price)})))
     );
   }
 
@@ -71,7 +83,7 @@ export class ProductService {
   // ! Evitar el Callback Hell - Observables
   // ? Operador switchMap() - Para peticiones que dependen una de la otra
   // ? zip() - Para peticiones que no tienen dependencia (equivalente a Promise.all())
-  //          * El resultado en zip es un Observable de tipo arreglo, cada elemento representa la respuesta ordenada de cada petición 
+  //          * El resultado en zip es un Observable de tipo arreglo, cada elemento representa la respuesta ordenada de cada petición
 
   findAndUpdateAndDelete(id: string, dto: UpdateProductDTO): Observable<boolean> {
     const URL = `${API_STORE}/products/${id}`;
@@ -81,9 +93,9 @@ export class ProductService {
     );
   }
 
-  createUpdateDeleteList(createProduct: CreateProductDTO, 
-                         idProductUpdate: string, 
-                         updateProduct: UpdateProductDTO, 
+  createUpdateDeleteList(createProduct: CreateProductDTO,
+                         idProductUpdate: string,
+                         updateProduct: UpdateProductDTO,
                          idProductDeleted: string): Observable<[Product, Product, boolean, Product[]]> {
     const URL = `${API_STORE}/products`;
     return zip([

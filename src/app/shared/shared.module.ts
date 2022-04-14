@@ -35,6 +35,7 @@ import { ProductSidebarComponent } from './components/product-sidebar/product-si
     NavbarComponent,
     FooterComponent,
     ProductSidebarComponent,
+    TimeAgoPipe,
     RouterModule
   ]
 })
