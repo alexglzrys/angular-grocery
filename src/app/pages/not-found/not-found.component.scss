@@ -1,0 +1,37 @@
+.not-found {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-width: 100vw;
+  text-align: center;
+  img {
+    max-width: 100%;
+    display: block;
+    margin-bottom: 4rem;
+  }
+  h2 {
+    color: #F50057;
+    font-weight: bold;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+  }
+  p {
+    color: #3f3f3f;
+    line-height: 1.3;
+    margin-bottom: 2rem;
+  }
+  a {
+    display: inline-block;
+    padding: 1rem 1.5rem;
+    background-color: #F50057;
+    color: #fff;
+    border-radius: .25rem;
+    transition: all .2s;
+    &:hover {
+      background-color: darken(#F50057, 10);
+    }
+  }
+}
