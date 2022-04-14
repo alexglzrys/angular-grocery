@@ -4,6 +4,8 @@ import { StoreService } from '../../services/store.service';
 import { User } from '../../dtos/user';
 import { AuthService } from '../../services/auth.service';
 import { FileService } from '../../services/file.service';
+import { CategoryService } from '../../services/category.service';
+import { Category } from '../../interfaces/category';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +13,8 @@ import { FileService } from '../../services/file.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+
+  categories: Category[] = [];
 
   faShoppingCart = faShoppingCart;
   faBars = faBars;
@@ -24,17 +28,25 @@ export class NavbarComponent implements OnInit {
 
   constructor(private storeService: StoreService,
               private authService: AuthService,
-              private fileService: FileService) { }
+              private fileService: FileService,
+              private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    // Suscribirnos al Observable del carrito de compras 
+    // Suscribirnos al Observable del carrito de compras
     // Para determinar cuantos productos hay actualmente dentro del carrito de forma REACTIVA
- 
+
     // Si bien existe un método en el servicio para saber eso, en este caso al suscribirse pordemos obtener lo mismo pero con la logica declarada en este componente (subscritor)
     this.storeService.myShoppingCart$.subscribe(products => {
       this.countProducts = products.length;
     });
+    this.fetchCategories();
     this.isLogged();
+  }
+
+  fetchCategories() {
+    this.categoryService.getAllCategories().subscribe(categories => {
+      this.categories = categories;
+    })
   }
 
   // Ocultar o mostrar el sidebar en modo mobile

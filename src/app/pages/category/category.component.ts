@@ -25,6 +25,7 @@ export class CategoryComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.categoryId = params.get('id');
       if (this.categoryId) {
+        this.resetCategory();
         this.fetchProducts();
       }
     })
@@ -40,6 +41,12 @@ export class CategoryComponent implements OnInit {
         this.showButtonLoadProducts = 'none';
       }
     })
+  }
+
+  resetCategory() {
+    this.offset = 0;
+    this.products = [];
+    this.showButtonLoadProducts = 'block';
   }
 
 }

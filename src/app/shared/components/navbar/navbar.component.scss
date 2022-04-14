@@ -35,6 +35,9 @@
             &:hover {
                 color: crimson
             }
+            &.active {
+              color: crimson
+            }
         }
         @media screen and (min-width: 600px) {
             display: flex;
@@ -126,6 +129,9 @@
             text-align: center;
             font-size: 1.2rem;
             color: rgb(70, 70, 70);
+          &.active {
+            color: crimson;
+          }
         }
     }
     .navbar__shopping-cart {
