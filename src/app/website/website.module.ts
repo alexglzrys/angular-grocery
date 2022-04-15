@@ -4,7 +4,6 @@ import { SwiperModule } from 'swiper/angular';
 import { WebsiteRoutingModule } from './website-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './pages/login/login.component';
-import { CategoryComponent } from './pages/category/category.component';
 import { SharedModule } from '../shared/shared.module';
 import { LayoutComponent } from './layout/layout.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -27,7 +26,6 @@ import { ProductSidebarComponent } from './components/product-sidebar/product-si
     RegisterComponent,
     LoginComponent,
     HomeComponent,
-    CategoryComponent,
     RecoveryComponent,
     ProfileComponent,
     MyShoppingCartComponent,
@@ -48,6 +46,9 @@ import { ProductSidebarComponent } from './components/product-sidebar/product-si
     ReactiveFormsModule,
     SharedModule,
     SwiperModule
+  ],
+  exports: [
+    ProductsComponent,
   ]
 })
 export class WebsiteModule { }

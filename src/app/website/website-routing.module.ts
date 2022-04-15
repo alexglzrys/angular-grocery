@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
-import { CategoryComponent } from './pages/category/category.component';
 import { MyShoppingCartComponent } from './pages/my-shopping-cart/my-shopping-cart.component';
 import { RecoveryComponent } from './pages/recovery/recovery.component';
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -21,8 +20,9 @@ const routes: Routes = [
         component: HomeComponent
       },
       {
-        path: 'category/:id',
-        component: CategoryComponent
+        // Precarga de sub-módulos de forma perezosa
+        path: 'category',
+        loadChildren: () => import('./categories/categories.module').then(m => m.CategoriesModule)
       },
       {
         path: 'product/:id',
