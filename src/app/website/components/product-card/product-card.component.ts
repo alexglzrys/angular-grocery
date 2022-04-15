@@ -1,6 +1,6 @@
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { Product } from '../../interfaces/product';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Product } from '../../../shared/interfaces/product';
 
 @Component({
   selector: 'app-product-card',
@@ -14,7 +14,7 @@ export class ProductCardComponent {
 
   @Output() addToShoppingCart: EventEmitter<Product> = new EventEmitter<Product>();
   @Output() getProductDetail: EventEmitter<string> = new EventEmitter<string>();
- 
+
   constructor() { }
 
   imageLoaded(url: string) {
@@ -27,6 +27,6 @@ export class ProductCardComponent {
   }
 
   productDetail() {
-    this.getProductDetail.emit(this.product.id); 
+    this.getProductDetail.emit(this.product.id);
   }
 }

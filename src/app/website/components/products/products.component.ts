@@ -1,8 +1,8 @@
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Product } from '../../interfaces/product';
-import { StoreService } from '../../services/store.service';
-import { ProductService } from '../../services/product.service';
+import { Product } from '../../../shared/interfaces/product';
+import { StoreService } from '../../../shared/services/store.service';
+import { ProductService } from '../../../shared/services/product.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-products',
@@ -37,7 +37,9 @@ export class ProductsComponent implements OnInit {
   constructor(private storeService: StoreService,
               private productService: ProductService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.total = this.storeService.getTotal();
+  }
 
   addToShoppingCart(product: Product) {
     this.showSidebarProductDetail = false;

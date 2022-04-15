@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import SwiperCore, { Autoplay, Pagination } from 'swiper';
 import { SwiperOptions } from 'swiper';
-import { ProductService } from '../../shared/services/product.service';
-import { Product } from '../../shared/interfaces/product';
-import { StoreService } from '../../shared/services/store.service';
+import { ProductService } from '../../../shared/services/product.service';
+import { Product } from '../../../shared/interfaces/product';
+import { StoreService } from '../../../shared/services/store.service';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 // Instalar módulos independientes de Swiper

@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef, Query } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Product } from '../../shared/interfaces/product';
-import { ProductService } from '../../shared/services/product.service';
+import { Product } from '../../../shared/interfaces/product';
+import { ProductService } from '../../../shared/services/product.service';
+
 
 @Component({
   selector: 'app-home',

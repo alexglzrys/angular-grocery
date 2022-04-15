@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { faShoppingCart, faBars, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
-import { StoreService } from '../../services/store.service';
-import { User } from '../../dtos/user';
-import { AuthService } from '../../services/auth.service';
-import { FileService } from '../../services/file.service';
-import { CategoryService } from '../../services/category.service';
-import { Category } from '../../interfaces/category';
+import { StoreService } from '../../../shared/services/store.service';
+import { User } from '../../../shared/dtos/user';
+import { AuthService } from '../../../shared/services/auth.service';
+import { FileService } from '../../../shared/services/file.service';
+import { CategoryService } from '../../../shared/services/category.service';
+import { Category } from '../../../shared/interfaces/category';
 
 @Component({
   selector: 'app-navbar',

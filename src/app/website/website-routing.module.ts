@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { CategoryComponent } from './category/category.component';
-import { MyShoppingCartComponent } from './my-shopping-cart/my-shopping-cart.component';
-import { RecoveryComponent } from './recovery/recovery.component';
-import { ProfileComponent } from './profile/profile.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { LoginComponent } from './pages/login/login.component';
+import { CategoryComponent } from './pages/category/category.component';
+import { MyShoppingCartComponent } from './pages/my-shopping-cart/my-shopping-cart.component';
+import { RecoveryComponent } from './pages/recovery/recovery.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { LayoutComponent } from './layout/layout.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   {

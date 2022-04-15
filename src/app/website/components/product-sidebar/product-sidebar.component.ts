@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { Product } from '../../interfaces/product';
+import { Product } from '../../../shared/interfaces/product';
 import { faShoppingCart, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import SwiperCore, { Pagination } from 'swiper';
 import { SwiperOptions } from 'swiper';
