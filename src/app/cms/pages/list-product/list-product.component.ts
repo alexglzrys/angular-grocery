@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { Product } from '../../../shared/interfaces/product';
 import Swal from 'sweetalert2';
@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-list-product',
   templateUrl: './list-product.component.html',
-  styleUrls: ['./list-product.component.scss']
+  styleUrls: ['./list-product.component.scss'],
 })
 export class ListProductComponent implements OnInit {
 
@@ -41,7 +41,7 @@ export class ListProductComponent implements OnInit {
         });
       }
     })
-    
+
   }
 
 }

@@ -1,35 +1,37 @@
 :host {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    padding: 2rem;
     align-items: center;
-    min-height: 100vh;
-}
-img {
-    width: 80px;
-    display: block;
-    margin-bottom: 1rem;
 }
 h3 {
     font-size: 1.5rem;
     line-height: 1.3;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    max-width: 1200px;
+  width: 100%;
+  text-align: left;
 }
 .products {
-    max-width: 768px;
+    max-width: 1200px;
     width: 100%;
-   /* padding: 2rem;
+    padding: 2rem;
     background-color: rgb(242, 242, 242);
-    border-radius: .25rem;*/
-    height: 400px;
-    overflow: hidden;
-    overflow-y: auto;
+    border-radius: .25rem;
+    /*height: 400px;*/
+    // overflow: hidden;
+
+
     .item:nth-child(odd) {
         background-color: rgb(235, 235, 235);
     }
     .item:nth-child(even) {
         background-color: #fff;
+    }
+    &__container {
+      height: 600px;
+      overflow-y: auto;
     }
 }
 .product {
@@ -40,21 +42,21 @@ h3 {
     h5 {
         font-size: .9rem;
     }
-    
-    
+
+
 }
 .btn-edit,
 .btn-delete,
 .btn-create {
     padding: .3rem .8rem;
     color: #fff;
-    background-color: rgb(228, 93, 3);
+    background-color: rgb(23, 142, 138);
     border-radius: .25rem;
     cursor: pointer;
     transition: all .2s;
     font-size: 1rem;
     &:hover {
-        background-color: darken(rgb(228, 93, 3), 10);
+        background-color: darken(rgb(23, 142, 138), 10);
     }
 }
 .btn-delete {

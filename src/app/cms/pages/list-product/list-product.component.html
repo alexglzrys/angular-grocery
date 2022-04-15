@@ -1,16 +1,16 @@
+<h3>Listado de Productos</h3>
+<ul class="products">
+  <div class="products__container">
+    <li *ngFor="let product of products" class="item">
+      <div class="product">
+          <h5>{{ product.title | uppercase }}</h5>
+          <div class="controls">
+              <button class="btn-edit" [routerLink]="['/cms/edit', product.id]">Editar</button>
+              <button class="btn-delete" (click)="deleteProduct(product.id)" >Eliminar</button>
+          </div>
+      </div>
+  </li>
+  </div>
 
-    <img src="assets/images/logotipo.svg" alt="Logotipo">
-    <h3>Listado de Productos</h3>
-    <button class="btn-create" [routerLink]="['create']">Crear nuevo</button>
-    <ul  class="products">
-        <li *ngFor="let product of products" class="item">
-            <div class="product">
-                <h5>{{ product.title | uppercase }}</h5>
-                <div class="controls">
-                    <button class="btn-edit" [routerLink]="['edit', product.id]">Editar</button>
-                    <button class="btn-delete" (click)="deleteProduct(product.id)" >Eliminar</button>
-                </div>
-            </div>
-        </li>
-    </ul>
+</ul>
 

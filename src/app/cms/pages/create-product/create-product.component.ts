@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../../../shared/services/product.service';
 import Swal from 'sweetalert2'
+import { CategoryService } from '../../../shared/services/category.service';
+import { Category } from '../../../shared/interfaces/product';
 
 @Component({
   selector: 'app-create-product',
@@ -11,9 +13,11 @@ import Swal from 'sweetalert2'
 export class CreateProductComponent implements OnInit {
 
   formProduct!: FormGroup;
+  categories: Category[] = [];
 
   constructor(private fb: FormBuilder,
-              private productService: ProductService) { }
+              private productService: ProductService,
+              private categoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.formProduct = this.fb.group({
@@ -23,6 +27,7 @@ export class CreateProductComponent implements OnInit {
       images: ['', Validators.required],
       categoryId: ['', Validators.required]
     });
+    this.categoryService.getAllCategories().subscribe(categories => this.categories = categories)
   }
 
   createProduct() {

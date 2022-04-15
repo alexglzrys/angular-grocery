@@ -1,5 +1,5 @@
 <div class="product-card">
-    <a class="product-card__visor" [routerLink]="['/product', product.id]">
+    <a class="product-card__visor" [routerLink]="['/site/product', product.id]">
         <app-product-image [image]="product.images[0]" [title]="product.title" (loaded)="imageLoaded($event)" class="product-card__image"></app-product-image>
     </a>
     <div class="product-card__body">

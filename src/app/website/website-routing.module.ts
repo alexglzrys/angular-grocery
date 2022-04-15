@@ -62,4 +62,4 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class PagesRoutingModule { }
+export class WebsiteRoutingModule { }

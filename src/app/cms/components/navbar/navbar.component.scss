@@ -1,0 +1,17 @@
+nav {
+  padding: 2rem;
+  background-color: rgb(50, 50, 50);
+  height: 100%;
+  li {
+
+  }
+  a {
+    color: #fff;
+    display: block;
+    padding: .6rem .5rem;
+    transition: all .2s;
+    &:hover {
+      color: antiquewhite;
+    }
+  }
+}

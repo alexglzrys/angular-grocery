@@ -5,6 +5,11 @@ import { CmsRoutingModule } from './cms-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditProductComponent } from './pages/edit-product/edit-product.component';
 import { ListProductComponent } from './pages/list-product/list-product.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { LayoutComponent } from './layout/layout.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './pages/home/home.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -12,11 +17,16 @@ import { ListProductComponent } from './pages/list-product/list-product.componen
   declarations: [
     CreateProductComponent,
     EditProductComponent,
-    ListProductComponent
+    ListProductComponent,
+    NavbarComponent,
+    LayoutComponent,
+    HeaderComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
     CmsRoutingModule,
+    SharedModule,
     ReactiveFormsModule
   ]
 })

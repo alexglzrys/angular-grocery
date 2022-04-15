@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../../../shared/services/product.service';
-import { Product } from '../../../shared/interfaces/product';
+import { Product, Category } from '../../../shared/interfaces/product';
 import { ActivatedRoute, Params } from '@angular/router';
-import { UpdateProductDTO } from '../../../shared/dtos/product';
 import Swal from 'sweetalert2';
+import { CategoryService } from '../../../shared/services/category.service';
 
 @Component({
   selector: 'app-edit-product',
@@ -16,10 +16,12 @@ export class EditProductComponent implements OnInit {
   formProduct!: FormGroup;
   product!: Product;
   id!: string;
+  categories: Category[] = [];
 
   constructor(private fb: FormBuilder,
               private productService: ProductService,
-              private activatedRouter: ActivatedRoute) { }
+              private activatedRouter: ActivatedRoute,
+              private categoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.formProduct = this.fb.group({
@@ -33,6 +35,7 @@ export class EditProductComponent implements OnInit {
       this.id = params['id'];
       this.fetchProduct(this.id);
     })
+    this.categoryService.getAllCategories().subscribe(categories => this.categories = categories)
   }
 
   fetchProduct(id: string) {
@@ -43,6 +46,7 @@ export class EditProductComponent implements OnInit {
         images: product.images.join(',')
       };
       this.formProduct.patchValue(data)
+      console.log(product, data)
     });
   }
 

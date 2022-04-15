@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SwiperModule } from 'swiper/angular';
-import { PagesRoutingModule } from './website-routing.module';
+import { WebsiteRoutingModule } from './website-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './pages/login/login.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { SharedModule } from '../shared/shared.module';
 import { LayoutComponent } from './layout/layout.component';
@@ -28,7 +27,6 @@ import { ProductSidebarComponent } from './components/product-sidebar/product-si
     RegisterComponent,
     LoginComponent,
     HomeComponent,
-    NotFoundComponent,
     CategoryComponent,
     RecoveryComponent,
     ProfileComponent,
@@ -46,11 +44,10 @@ import { ProductSidebarComponent } from './components/product-sidebar/product-si
   imports: [
     CommonModule,
     FontAwesomeModule,
-    PagesRoutingModule,
+    WebsiteRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    SwiperModule,
-    FontAwesomeModule,
+    SwiperModule
   ]
 })
-export class PagesModule { }
+export class WebsiteModule { }

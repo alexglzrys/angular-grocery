@@ -1,4 +1,3 @@
-<img src="assets/images/logotipo.svg" alt="Logotipo">
 <h3>Registrar Producto</h3>
 <form [formGroup]="formProduct" (ngSubmit)="createProduct()">
     <div class="form-group">
@@ -21,9 +20,7 @@
         <label for="">Categoría</label>
         <select formControlName="categoryId">
             <option value="" selected disabled>Seleccione una categoría</option>
-            <option value="1">Categoría 1</option>
-            <option value="2">Categoría 2</option>
-            <option value="3">Categoría 3</option>
+            <option [value]="category.id" *ngFor="let category of categories">{{ category.name }}</option>
         </select>
     </div>
     <button type="submit" [disabled]="formProduct.invalid">Registrar</button>

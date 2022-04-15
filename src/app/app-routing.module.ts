@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { CmsModule } from './cms/cms.module';
-import { PagesModule } from './website/website.module';
-import { NotFoundComponent } from './website/pages/not-found/not-found.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: () => import('./website/website.module').then(m => PagesModule)
+    path: 'site',
+    loadChildren: () => import('./website/website.module').then(m => m.WebsiteModule)
   },
   {
     path: 'cms',
-    loadChildren: () => import('./cms/cms.module').then(m => CmsModule)
+    loadChildren: () => import('./cms/cms.module').then(m => m.CmsModule)
+  },
+  {
+    path: '',
+    redirectTo: 'site',
+    pathMatch: 'full'
   },
   {
     path: '**',

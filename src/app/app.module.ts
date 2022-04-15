@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TimeInterceptor } from './shared/interceptors/time.interceptor';
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

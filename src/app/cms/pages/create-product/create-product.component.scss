@@ -1,23 +1,24 @@
 :host {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+
     align-items: center;
-    min-height: 100vh;
+
+    padding: 2rem;
+   /* display: block;*/
 }
-img {
-    width: 80px;
-    display: block;
-    margin-bottom: 1rem;
-}
+
 h3 {
-    font-size: 1.5rem;
-    line-height: 1.3;
-    font-weight: 700;
-    margin-bottom: 1rem;
+  font-size: 1.3rem;
+  line-height: 1.3;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  max-width: 1200px;
+  width: 100%;
+  text-align: left;
 }
 form {
-    max-width: 768px;
+    max-width: 1200px;
     width: 100%;
     background-color: rgb(242, 242, 242);
     padding: 2rem;
