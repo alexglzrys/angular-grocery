@@ -3,11 +3,12 @@
         <app-product-image [image]="product.images[0]" [title]="product.title" (loaded)="imageLoaded($event)" class="product-card__image"></app-product-image>
     </a>
     <div class="product-card__body">
-        <div class="product-card__description" (click)="productDetail()">
+      <!-- El . en routerLink le indica a Angular que debe continuar la busqueda a partir de la URL actual -->
+        <a class="product-card__description" [routerLink]="['.']" [queryParams]="{product: product.id}">
             <p class="product-card__price">{{ product.price| currency }}</p>
             <h3 class="product-card__title">{{ product.title}}</h3>
             <p class="product-card__date">Publicado hace {{ product.date! | timeAgo }}</p>
-        </div>
+        </a>
         <div>
             <fa-icon [icon]="faShoppingCart" (click)="addToCart()" class="product-card__icon"></fa-icon>
         </div>

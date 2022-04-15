@@ -13,6 +13,7 @@ export class CategoryComponent implements OnInit {
   categoryId: string | null = null;
   products: Product[] = [];
   showButtonLoadProducts = 'block';
+  productId: string | null = null;
 
   // pagination
   limit = 8;
@@ -28,6 +29,10 @@ export class CategoryComponent implements OnInit {
         this.resetCategory();
         this.fetchProducts();
       }
+    })
+    // Suscripción a las cadenas de consulta
+    this.route.queryParamMap.subscribe((params: ParamMap) => {
+      this.productId = params.get('product');
     })
   }
 

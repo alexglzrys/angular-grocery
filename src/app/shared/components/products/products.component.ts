@@ -12,6 +12,17 @@ import Swal from 'sweetalert2';
 export class ProductsComponent implements OnInit {
 
   @Input() products!: Product[];
+  // Mostrar el sidebar con la información del producto, con base al valor del Input
+  // Declarado como setter para para estar atento si el valor del input cambia y ejcutar cierta lógica en cuestión
+  @Input()
+  set productId(id: string | null) {
+    if (id) {
+      this.getProduct(id);
+    } else {
+      this.showSidebarProductDetail = false;
+    }
+  }
+
   @Input() showButtonLoadProducts!: string;
   @Output() loadProducts = new EventEmitter<null>();
 
