@@ -14,7 +14,7 @@
         align-items: center;
     }
     &__mobile {
-        @media screen and (min-width: 600px) {
+        @media screen and (min-width: 768px) {
             display: none;
         }
     }
@@ -39,7 +39,7 @@
               color: crimson
             }
         }
-        @media screen and (min-width: 600px) {
+        @media screen and (min-width: 768px) {
             display: flex;
         }
     }

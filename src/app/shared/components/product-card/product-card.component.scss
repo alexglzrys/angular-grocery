@@ -1,5 +1,5 @@
 .product-card {
-    cursor: pointer;
+
     max-width: 360px;
     &__visor {
         height: 250px;
@@ -12,6 +12,9 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
+    }
+    &__description {
+      cursor: pointer;
     }
     &__price {
         font-weight: 700;
@@ -41,6 +44,7 @@
         border-radius: 50%;
         font-size: .9rem;
         margin-left: .5rem;
+        cursor: pointer;
     }
 }
 

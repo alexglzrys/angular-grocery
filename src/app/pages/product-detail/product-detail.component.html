@@ -1,0 +1,24 @@
+<div class="product" >
+  <div class="product__container" *ngIf="product">
+    <div class="product__swiper">
+      <swiper [config]="config">
+        <ng-template swiperSlide *ngFor="let img of product.images">
+            <img [src]="img" class="sidebar__image" [alt]="product.title">
+        </ng-template>
+      </swiper>
+    </div>
+    <div class="product__body">
+      <h3 class="product__title">{{ product.title }}</h3>
+      <div class="product__cost">
+        <p>{{ product.price | currency }}</p>
+        <p>IVA: {{ product.taxes | currency}}</p>
+      </div>
+      <p class="product__description">{{ product.description }}</p>
+      <button class="product__button" (click)="goToBack()">Regresar</button>
+      <button class="product__shopping" (click)="addToShoppingCart()">
+        <fa-icon [icon]="faShoppingCart" class="product-card__icon"></fa-icon>
+        Agregar al carrito
+    </button>
+    </div>
+  </div>
+</div>

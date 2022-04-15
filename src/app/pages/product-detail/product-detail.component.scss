@@ -1,0 +1,71 @@
+:host {
+  flex: 1;
+}
+.product {
+  padding: 0 1rem;
+  &__container {
+    max-width: 1200px;
+    display: grid;
+    margin: 0 auto;
+    padding: 3rem 0;
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+    @media screen and (min-width: 680px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  &__swiper {
+    overflow: hidden;
+  }
+  &__title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+  &__cost {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    p {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: rgb(84, 84, 84);
+    }
+  }
+  &__description {
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+  &__body {
+    position: relative;
+  }
+  &__button {
+    display: inline-block;
+    padding: .5rem;
+    background-color: crimson;
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  &__shopping {
+    display: block;
+      background-color: crimson;
+      color: #fff;
+      padding: 1rem;
+      border-radius: .25rem;
+      font-size: 1.2rem;
+      text-align: center;
+      width: 80%;
+      font-weight: 700;
+
+      cursor: pointer;
+      transition: all .2s;
+      margin: 4rem auto 0;
+      &:hover {
+          background-color: darken(crimson, 5);
+      }
+  }
+}

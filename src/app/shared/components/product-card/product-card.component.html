@@ -1,9 +1,9 @@
 <div class="product-card">
-    <div class="product-card__visor" (click)="productDetail()">
+    <a class="product-card__visor" [routerLink]="['/product', product.id]">
         <app-product-image [image]="product.images[0]" [title]="product.title" (loaded)="imageLoaded($event)" class="product-card__image"></app-product-image>
-    </div>
+    </a>
     <div class="product-card__body">
-        <div class="product-card__description">
+        <div class="product-card__description" (click)="productDetail()">
             <p class="product-card__price">{{ product.price| currency }}</p>
             <h3 class="product-card__title">{{ product.title}}</h3>
             <p class="product-card__date">Publicado hace {{ product.date! | timeAgo }}</p>

@@ -9,6 +9,7 @@ import { MyShoppingCartComponent } from './my-shopping-cart/my-shopping-cart.com
 import { RecoveryComponent } from './recovery/recovery.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LayoutComponent } from './layout/layout.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path: 'category/:id',
         component: CategoryComponent
+      },
+      {
+        path: 'product/:id',
+        component: ProductDetailComponent
       },
       {
         path: 'my-cart',
