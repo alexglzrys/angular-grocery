@@ -1,10 +1,10 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Auth } from '../dtos/auth';
 import { User } from '../dtos/user';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 import { TokenService } from './token.service';
 
 const API_URL = environment.api_store;
@@ -13,6 +13,11 @@ const API_URL = environment.api_store;
   providedIn: 'root'
 })
 export class AuthService {
+
+  // Observable para indicar si hay o no un usuario autenticado.
+  // Por defecto no hay usuario logeado.
+  private userSource = new BehaviorSubject<User | null>(null);
+  user$ = this.userSource.asObservable();
 
   constructor(private http: HttpClient,
               private tokenService: TokenService) { }
@@ -36,6 +41,12 @@ export class AuthService {
         this.tokenService.saveToken(auth.access_token);
         return this.http.get<User>(`${URL}/profile`);
       }),
+      // De forma secundaria, si el usuario esta logeado (hay token), le indicamos al observable que actualice su valor con los datos del usuario. De esta forma quien este suscrito, escuchará esos cambios
+      tap(user => {
+        if (user) {
+          this.userSource.next(user)
+        }
+      }),
       catchError((error: HttpErrorResponse) => {
         if (error.status === HttpStatusCode.Unauthorized) return throwError(() => new Error('Credenciales incorrectas'));
         if (error.status === HttpStatusCode.InternalServerError) return throwError(() => new Error('Error interno en el servidor'));
@@ -48,7 +59,14 @@ export class AuthService {
     const URL = `${API_URL}/auth/profile`;
 
     // El token en esta petición se agrega mediante el uso de un interceptor
-    return this.http.get<User>(URL);
+    return this.http.get<User>(URL).pipe(
+      // De forma secundaria, si el usuario esta logeado (hay token), le indicamos al observable que actualice su valor con los datos del usuario. De esta forma quien este suscrito, escuchará esos cambios
+      tap(user => {
+        if (user) {
+          this.userSource.next(user)
+        }
+      })
+    );
   }
 
   isLogged(): User | null {
@@ -60,5 +78,6 @@ export class AuthService {
 
   logout(): void {
     this.tokenService.removeToken();
+    this.userSource.next(null);
   }
 }

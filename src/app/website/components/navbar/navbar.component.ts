@@ -40,7 +40,13 @@ export class NavbarComponent implements OnInit {
       this.countProducts = products.length;
     });
     this.fetchCategories();
-    this.isLogged();
+    //this.isLogged();
+
+    // Suscribirnos al Observable de perfil de usuario
+    // Si el usuario esta logeado, sus datos de perfil se conocen y se pueden pintar en la vista
+    this.authService.user$.subscribe(profile => {
+      this.profile = profile
+    });
   }
 
   fetchCategories() {
