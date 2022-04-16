@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { FileService } from 'src/app/shared/services/file.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import Swal from 'sweetalert2';
+import { OnExit } from '../../../shared/interfaces/on-exit';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnExit {
 
   formRegister!: FormGroup
 
@@ -25,6 +27,23 @@ export class RegisterComponent implements OnInit {
       email: ['', [Validators.email, Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(10)]]
     });
+  }
+
+  // Definir la lógica de este método para notificar al usuario si es bueno salir o no de esta página
+  jsOnExit() {
+    return Swal.fire({
+      title: 'Uyyy!',
+      text: '¿Estas seguro de querer abondonar esta sección?',
+      icon: 'question',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Si, deseo salir'
+    }).then(res => {
+      if (res.isConfirmed) {
+        return true;
+      }
+      return false;
+    })
   }
 
   createUser() {

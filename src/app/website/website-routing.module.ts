@@ -10,6 +10,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { ExitGuard } from '../guards/exit.guard';
 
 const routes: Routes = [
   {
@@ -39,6 +40,8 @@ const routes: Routes = [
       },
       {
         path: 'register',
+        canDeactivate: [ExitGuard],
+        // La sección de registro esta protegida para que el usuairo no la abandone sin antes ser notificado
         component: RegisterComponent
       },
       {
