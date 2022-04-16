@@ -13,13 +13,9 @@ import { MyShoppingCartComponent } from './pages/my-shopping-cart/my-shopping-ca
 import { ProfileComponent } from './pages/profile/profile.component';
 import { RecoveryComponent } from './pages/recovery/recovery.component';
 import { HomeComponent } from './pages/home/home.component';
-import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { ProductsComponent } from './components/products/products.component';
-import { ProductCardComponent } from './components/product-card/product-card.component';
-import { ProductImageComponent } from './components/product-image/product-image.component';
-import { ProductSidebarComponent } from './components/product-sidebar/product-sidebar.component';
+import { QuicklinkModule } from 'ngx-quicklink';
 
 @NgModule({
   declarations: [
@@ -31,24 +27,17 @@ import { ProductSidebarComponent } from './components/product-sidebar/product-si
     MyShoppingCartComponent,
     LayoutComponent,
     ProductDetailComponent,
-    TimeAgoPipe,
     FooterComponent,
     NavbarComponent,
-    ProductsComponent,
-    ProductCardComponent,
-    ProductImageComponent,
-    ProductSidebarComponent
   ],
   imports: [
     CommonModule,
     FontAwesomeModule,
+    SwiperModule,
+    // QuicklinkModule,
     WebsiteRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    SwiperModule
-  ],
-  exports: [
-    ProductsComponent,
   ]
 })
 export class WebsiteModule { }

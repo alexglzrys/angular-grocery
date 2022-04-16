@@ -1,6 +1,6 @@
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Product } from '../../../shared/interfaces/product';
+import { Product } from '../../interfaces/product';
 
 @Component({
   selector: 'app-product-card',

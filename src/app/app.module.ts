@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { TimeInterceptor } from './shared/interceptors/time.interceptor';
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { QuicklinkModule } from 'ngx-quicklink';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    QuicklinkModule
   ],
   providers: [
     // Registrar interceptores

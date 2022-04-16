@@ -22,7 +22,11 @@ const routes: Routes = [
       {
         // Precarga de sub-módulos de forma perezosa
         path: 'category',
-        loadChildren: () => import('./categories/categories.module').then(m => m.CategoriesModule)
+        loadChildren: () => import('./categories/categories.module').then(m => m.CategoriesModule),
+        // Este módulo de ruta deberá ser precargado desde el inicio
+        data: {
+          preload: true
+        }
       },
       {
         path: 'product/:id',
