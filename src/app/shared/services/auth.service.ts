@@ -53,8 +53,12 @@ export class AuthService {
 
   isLogged(): User | null {
     const profile = localStorage.getItem('profile') || null;
-    if (profile) 
+    if (profile)
       return JSON.parse(profile);
     return null;
+  }
+
+  logout(): void {
+    this.tokenService.removeToken();
   }
 }

@@ -38,9 +38,9 @@
                     <img [src]="img_tmp_avatar" alt="Avatar" class="navbar__avatar">
                     <input type="file" id="upload_file" (change)="uploadFile($event)">
                 </label>
-                <p class="navbar__email">{{ profile.email }}</p>
+                <a class="navbar__email" routerLink="/site/profile">{{ profile.email }}</a>
             </ng-container>
-            <a *ngIf="!profile" class="navbar__button" [routerLink]="['pages/login']">Login</a>
+            <a *ngIf="!profile" class="navbar__button" [routerLink]="['/site/login']">Login</a>
             <div class="navbar__shopping-cart">
                 <div class="navbar__shopping-count">{{ countProducts }}</div>
                 <fa-icon [icon]="faShoppingCart"></fa-icon>

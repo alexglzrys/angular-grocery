@@ -1,1 +1,9 @@
-<p>profile works!</p>
+<div class="profile" *ngIf="user">
+  <div class="profile__container">
+    <h3>Perfil de usuario</h3>
+    <p>Nombre: {{ user.name }}</p>
+    <p>Email: {{ user.email }} </p>
+    <p>Rol: {{ user.role }} </p>
+    <button (click)="logout()">Cerrar sesión</button>
+  </div>
+</div>

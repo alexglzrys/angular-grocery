@@ -9,6 +9,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { HomeComponent } from './pages/home/home.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -50,6 +51,8 @@ const routes: Routes = [
       },
       {
         path: 'profile',
+        canActivate: [AuthGuard],
+        canLoad: [AuthGuard],
         component: ProfileComponent
       },
     ],
