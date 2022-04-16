@@ -4,6 +4,7 @@
     <p>Nombre: {{ user.name }}</p>
     <p>Email: {{ user.email }} </p>
     <p>Rol: {{ user.role }} </p>
+    <p *ngIf="user.role === 'admin'"><a routerLink="/cms">Ir al CMS</a></p>
     <button (click)="logout()">Cerrar sesión</button>
   </div>
 </div>
