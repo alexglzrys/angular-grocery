@@ -50,3 +50,58 @@ Environment
 ```
 
 Finalmente ejecutar **ng serve -o**
+
+## Publicar App Angular en Netlify
+
+- Crear una cuenta en [Netlify](https://www.netlify.com/)
+- Al registrarse procurar logearse con la cuenta de **Github**
+- En el panel de control, click en el botón **Agregar nuevo sitio**, y seleccionar **Importar un proyecto existente**
+- Seleccionar la cuenta dónde se encuentra el repositorio con el proyecto a desplegar, **Github**
+
+```
+Antes de continuar, es importante haber probado que el proyecto se puede empaquetar para producción. así como haber generado una nueva rama en el repositorio con la últimos cambios para producción y subirla a Github.
+
+git branch production
+git checkout production
+
+-- ver archivo environment.prod.ts
+
+git push origin production
+```
+
+- Seleccionar que se desea acceder a todos los repositorios de **Github**,
+- Seleccionar el proyecto a desplegar en Internet
+- Indicar la rama que se desea desplegar **production**
+- Especificar el directorio público de nuestra aplicación. **Carpeta generada para el proyecto una vez construido para producción**
+
+```
+dist/carpeta-proyecto-generada
+
+Esto se puede saber construyendo el proyecto en local o visitando el archivo angular.json, sección
+
+"outputPath": "dist/grocery-store",
+```
+
+- Seleccionar **deploy site**
+- Esperar...
+- Se puede visualizar el estado actual del progreso del deploy, una vez terminado, **Netlify** nos muestra un botón con la URL del sitio.
+
+```
+Se puede cambiar el nombre del dominio del sitio, seleccionando el proyecto, Domain Settings, Custom Domain. 
+```
+
+### Netlify y SPA
+
+La aplicación de Angular funcionará correctamente, pero si el usuario recarga el navegador, probablemente muestre un error 404. Para ello es importante especificar que el sitio desplegado es un SPA
+
+- Crear un archivo en la raíz del proyecto Angular llamado **netlify.toml**
+- Agregar la configuración de redirección necesaria para aplicaciones de tipo SPA
+```
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
+- Hacer commit en la rama production y push al repo en **Github**
+- **Automáticamente se construira y deployará el proyecto con los nuevos cambios en la rama production**, gracias a que Netlify tiene **Integración continua** con el repositorio de **Github**
+
